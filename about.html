@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>FlyUSA<</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-secondary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+  
+<!-- Navbar & Hero Start -->
+       <!-- Navbar & Hero Start -->
+        <div class="container-fluid nav-bar p-0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="display-5 text-secondary m-0"><img src="img/4500.jpg" class="img-fluid" alt="">FlyUSA</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                  
+  <!-- Nav Links -->
+<a href="office.html" class="nav-item nav-link">Offices</a>
+<a href="#" class="nav-item nav-link" id="loginBtn">Login</a>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content glow-modal">
+    <span class="close" id="loginClose">&times;</span>
+    <h2 class="modal-title">Login</h2>
+    <input type="text" placeholder="Username or Email" id="loginUser" class="glow-input"><br>
+    <input type="password" placeholder="Password" id="loginPass" class="glow-input"><br>
+    <a href="#" class="forgot-link">Forgot Password?</a><br><br>
+    <button id="loginSubmit" class="glow-btn">Login</button>
+    <p class="signup-text">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content glow-modal">
+    <span class="close" id="signupClose">&times;</span>
+    <h2 class="modal-title">Sign Up</h2>
+    <input type="text" placeholder="Full Name" class="glow-input"><br>
+    <input type="email" placeholder="Email" class="glow-input"><br>
+    <input type="password" placeholder="Password" class="glow-input"><br>
+    <button id="registerBtn" class="glow-btn">Register</button>
+  </div>
+</div>
+
+<!-- Popup Message Modal -->
+<div id="popupModal" class="modal">
+  <div class="modal-content glow-modal">
+    <span class="close" id="popupClose">&times;</span>
+    <p id="popupMessage"></p>
+  </div>
+</div>
+
+<style>
+/* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(3px);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #1a1a1a;
+  color: #fff;
+  margin: 10% auto;
+  padding: 30px 20px;
+  border-radius: 15px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
+  border: 2px solid #00ffff;
+  animation: popIn 0.3s ease forwards;
+}
+
+/* Glow animation */
+.glow-modal {
+  animation: glowPulse 2s infinite alternate;
+}
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 15px #00ffff; }
+  50% { box-shadow: 0 0 25px #00ffff; }
+  100% { box-shadow: 0 0 15px #00ffff; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Close button */
+.close {
+  float: right;
+  font-size: 25px;
+  cursor: pointer;
+  color: #00ffff;
+  transition: color 0.3s;
+}
+.close:hover { color: #fff; }
+
+/* Title */
+.modal-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+/* Inputs */
+.glow-input {
+  width: 90%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00ffff;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s;
+}
+.glow-input:focus {
+  box-shadow: 0 0 15px #00ffff;
+  border-color: #00ffff;
+}
+
+/* Buttons */
+.glow-btn {
+  background: linear-gradient(45deg, #00ffff, #00aaff);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px #00ffff;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 20px #00ffff, 0 0 30px #00aaff;
+  transform: scale(1.05);
+}
+
+/* Links */
+.forgot-link, .signup-text a {
+  color: #00ffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.forgot-link:hover, .signup-text a:hover {
+  color: #00aaff;
+  text-decoration: underline;
+}
+
+/* Signup text */
+.signup-text {
+  margin-top: 12px;
+  font-size: 14px;
+}
+</style>
+
+<script>
+const loginBtn = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const loginClose = document.getElementById('loginClose');
+const signupModal = document.getElementById('signupModal');
+const signupLink = document.getElementById('signupLink');
+const signupClose = document.getElementById('signupClose');
+const registerBtn = document.getElementById('registerBtn');
+const popupModal = document.getElementById('popupModal');
+const popupMessage = document.getElementById('popupMessage');
+const popupClose = document.getElementById('popupClose');
+const loginSubmit = document.getElementById('loginSubmit');
+
+// Open Login Modal
+loginBtn.onclick = () => loginModal.style.display = 'block';
+loginClose.onclick = () => loginModal.style.display = 'none';
+
+// Open Signup Modal
+signupLink.onclick = () => {
+  loginModal.style.display = 'none';
+  signupModal.style.display = 'block';
+};
+signupClose.onclick = () => signupModal.style.display = 'none';
+
+// Register Button
+registerBtn.onclick = () => {
+  signupModal.style.display = 'none';
+  popupMessage.innerText = "Registration Successful!";
+  popupModal.style.display = 'block';
+  setTimeout(() => {
+    popupModal.style.display = 'none';
+    loginModal.style.display = 'block';
+  }, 2000);
+};
+
+// Login Button
+loginSubmit.onclick = () => {
+  loginModal.style.display = 'none';
+  popupMessage.innerText = "Login Coming Soon!";
+  popupModal.style.display = 'block';
+  setTimeout(() => {
+    popupModal.style.display = 'none';
+    window.location.href = "index.html";
+  }, 2000);
+};
+
+// Close popup manually
+popupClose.onclick = () => popupModal.style.display = 'none';
+
+// Close modal if clicked outside
+window.onclick = (e) => {
+  if(e.target.className === 'modal') {
+    loginModal.style.display = 'none';
+    signupModal.style.display = 'none';
+    popupModal.style.display = 'none';
+  }
+}
+</script>
+            </nav>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h1>
+                <ol class="breadcrumb justify-content-center text-white mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
+                    
+                    <li class="breadcrumb-item active text-secondary">About</li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
+
+        <!-- About Start -->
+        <div class="container-fluid py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
+                        <div class="bg-light rounded">
+                            <img src="img/about-2.png" class="img-fluid w-100" style="margin-bottom: -7px;" alt="Image">
+                            <img src="img/about-3.jpg" class="img-fluid w-100 border-bottom border-5 border-primary" style="border-top-right-radius: 300px; border-top-left-radius: 300px;" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
+                        <h5 class="sub-title pe-3">About the company</h5>
+                        <h1 class="display-5 mb-4">We’re Trusted Immigration Consultant Agency.</h1>
+                        <p class="mb-4">We are a trusted immigration consultancy dedicated to guiding individuals and families 
+through every step of the immigration process. With years of experience and a deep understanding of immigration laws, we provide personalized
+ solutions tailored to each client’s needs. </p>
+                        <div class="row gy-4 align-items-center">
+                            <div class="col-12 col-sm-6 d-flex align-items-center">
+                                <i class="fas fa-map-marked-alt fa-3x text-secondary"></i>
+                                <h5 class="ms-4">Best Immigration Resources</h5>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex align-items-center">
+                                <i class="fas fa-passport fa-3x text-secondary"></i>
+                                <h5 class="ms-4">Return Visas Availabile</h5>
+                            </div>
+                            <div class="col-4 col-md-3">
+                                <div class="bg-light text-center rounded p-3">
+                                    <div class="mb-2">
+                                        <i class="fas fa-ticket-alt fa-4x text-primary"></i>
+                                    </div>
+                                    <h1 class="display-5 fw-bold mb-2">50</h1>
+                                    <p class="text-muted mb-0">Years of Experience</p>
+                                </div>
+                            </div>
+                            <div class="col-8 col-md-9">
+                                <div class="mb-5">
+                                    <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Offer 100 % Genuine Assistance</p>
+                                    <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> It’s Faster & Reliable Execution</p>
+                                    <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Accurate & Expert Advice</p>
+                                </div>
+                                <div class="d-flex flex-wrap">
+                                    <div id="phone-tada" class="d-flex align-items-center justify-content-center me-4">
+                                        <a href="" class="position-relative wow tada" data-wow-delay=".9s">
+                                            <i class="fa fa-phone-alt text-primary fa-3x"></i>
+                                            <div class="position-absolute" style="top: 0; left: 25px;">
+                                                <span><i class="fa fa-comment-dots text-secondary"></i></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="text-primary">Have any questions?</span>
+                                        <span class="text-secondary fw-bold fs-5" style="letter-spacing: 2px;">Free: +1 445 229-9076</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+        <!-- Contact Start -->
+<div class="container-fluid contact overflow-hidden py-5">
+    <div class="container pb-5">
+        <div class="office">
+            <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="sub-style">
+                    <h5 class="sub-title text-primary px-3">Worldwide Offices</h5>
+                </div>
+                <h1 class="display-5 mb-4">Explore Our Offices Across the Globe</h1>
+                <p class="mb-0">
+                    Our FlyUSA branches are positioned globally to give clients quick and reliable support. 
+                    Each office is run by trained aviation specialists dedicated to offering seamless booking 
+                    assistance, flight planning, and personalized customer care.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+
+                <!-- USA Office -->
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="office-item p-4">
+                        <div class="office-img mb-4">
+                            <img src="img/office-2.jpg" class="img-fluid w-100 rounded" alt="">
+                        </div>
+                        <div class="office-content d-flex flex-column">
+                            <h4 class="mb-2">United States</h4>
+                            <a href="#" class="text-secondary fs-5 mb-2">+1 727 240 2408</a>
+                            <a href="#" class="text-muted fs-5 mb-2">support@flyusa.com</a>
+                            <p class="mb-0">380 Park Place Blvd, Suite 150, Clearwater, FL.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dubai Office -->
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="office-item p-4">
+                        <div class="office-img mb-4">
+                            <img src="img/office-1.jpg" class="img-fluid w-100 rounded" alt="">
+                        </div>
+                        <div class="office-content d-flex flex-column">
+                            <h4 class="mb-2">Dubai</h4>
+                            <a href="#" class="text-secondary fs-5 mb-2">+971 52 889 3340</a>
+                            <a href="#" class="text-muted fs-5 mb-2">dubai@flyusa.com</a>
+                            <p class="mb-0">Level 12, Marina Plaza, Dubai Marina, UAE.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- United Kingdom Office -->
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="office-item p-4">
+                        <div class="office-img mb-4">
+                            <img src="img/office-3.jpg" class="img-fluid w-100 rounded" alt="">
+                        </div>
+                        <div class="office-content d-flex flex-column">
+                            <h4 class="mb-2">United Kingdom</h4>
+                            <a href="#" class="text-secondary fs-5 mb-2">+44 203 918 5560</a>
+                            <a href="#" class="text-muted fs-5 mb-2">uk@flyusa.com</a>
+                            <p class="mb-0">55 Bishopsgate Street, London EC2N.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- South Africa Office -->
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="office-item p-4">
+                        <div class="office-img mb-4">
+                            <img src="img/office-4.jpg" class="img-fluid w-100 rounded" alt="">
+                        </div>
+                        <div class="office-content d-flex flex-column">
+                            <h4 class="mb-2">South Africa</h4>
+                            <a href="#" class="text-secondary fs-5 mb-2">+27 78 345 2210</a>
+                            <a href="#" class="text-muted fs-5 mb-2">sa@flyusa.com</a>
+                            <p class="mb-0">14 Sandton Gate, Johannesburg, South Africa.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-secondary mb-4">Contact Info</h4>
+                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> flyusa001@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67899</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-share fa-2x text-secondary me-2"></i>
+                                <a class="btn mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-secondary mb-4">Opening Time</h4>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Mon - Friday:</h6>
+                                <p class="text-white mb-0">09.00 am to 07.00 pm</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Satday:</h6>
+                                <p class="text-white mb-0">10.00 am to 05.00 pm</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Vacation:</h6>
+                                <p class="text-white mb-0">All Sunday is our vacation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-secondary mb-4">Our Services</h4>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Business</a>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Evaluation</a>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Migrate</a>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Study</a>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Counselling</a>
+                            <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Work / Career</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-secondary mb-4">Newsletter</h4>
+                            <p class="text-white mb-3">FlyUSA offices worldwide are dedicated to providing professional and reliable support for all your private aviation needs.</p>
+                            <div class="position-relative mx-auto rounded-pill">
+                                <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                                <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                  <div class="col-md-6 text-center text-md-start mb-md-0">
+    <span class="text-white">© 2025 FLYUSA. All Rights Reserved.</span>
+</div>
+
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    </body>
+
+</html>

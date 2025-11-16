@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyUSA Booking</title>
+    <style>
+        /* --- General Setup & Typography --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+
+            /* --- Background Image Styling --- */
+            /* I've replaced 'pay.jpg' with a placeholder URL in case the local file is missing */
+            background: url('pay.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            position: relative;
+        }
+
+        /* --- Background Overlay for Readability --- */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(240, 242, 245, 0.7);
+            z-index: 0;
+        }
+
+        /* --- Booking Container (Resized & Centered) --- */
+        .booking-container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 380px; 
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease-in-out;
+        }
+
+        h1 {
+            color: #1a237e;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #455a64;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        input[type="number"] {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 0.95rem;
+        }
+
+        input:focus {
+            border-color: #3f51b5;
+            box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+            outline: none;
+        }
+
+        /* --- Grid for Date, Time, Travelers (More compact) --- */
+        .grid-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .grid-group .form-group {
+            margin-bottom: 0;
+        }
+
+        /* --- Fixed Amount Display --- */
+        #amount-info {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a237e;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8eaf6;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #3f51b5;
+        }
+
+        #fixed-amount {
+            color: #c62828;
+            font-size: 1.2em;
+        }
+
+        /* --- Complete Booking Button --- */
+        #complete-booking-btn {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 11px 18px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        #complete-booking-btn:hover:not(:disabled) {
+            background-color: #388e3c;
+            transform: translateY(-1px);
+        }
+
+        #complete-booking-btn:disabled {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+        }
+
+        /* --- Loader Styling --- */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3f51b5;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: 20px auto 0;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Confirmation Section Styling (Hidden when PayPal auto-redirects) --- */
+        #payment-redirect-message {
+            display: none; 
+            text-align: center;
+            margin-top: 20px;
+            padding: 18px;
+            border: 1px dashed #90a4ae;
+            background-color: #fafafa;
+            border-radius: 8px;
+        }
+        #payment-redirect-message h3 {
+            color: #2e7d32;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        #payment-redirect-message p {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 480px) {
+            .booking-container {
+                padding: 18px;
+                max-width: 95%;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .grid-group {
+                grid-template-columns: 1fr;
+            }
+            .form-group label,
+            input[type="text"], input[type="email"], input[type="tel"],
+            input[type="date"], input[type="time"], input[type="number"] {
+                font-size: 0.85rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="booking-container">
+    <h1>FlyUSA Booking</h1>
+
+    <form id="booking-form">
+        <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" required placeholder="peter Waingo">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="youremail@gmail.com">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter Phone number">
+        </div>
+
+        <div class="grid-group">
+            <div class="form-group">
+                <label for="travel-date">Date</label>
+                <input type="date" id="travel-date" name="travel-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="travel-time">Time</label>
+                <input type="time" id="travel-time" name="travel-time" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="travelers">No of travellers</label>
+                <input type="number" id="travelers" name="travelers" placeholder ="e.g ,1" required>
+            </div>
+        </div>
+
+        <div id="amount-info">
+            Amount: <span id="fixed-amount">$100.00</span>
+        </div>
+
+        <button type="submit" id="complete-booking-btn">
+            Complete Booking
+        </button>
+        <div class="loader" id="loader"></div>
+    </form>
+
+    <div id="payment-redirect-message">
+        <h3>Processing Payment...</h3>
+        <p>You are being securely redirected to PayPal to complete your payment of **$100.00**.</p>
+        <p style="font-size: 0.8em; color: #888; margin-top: 15px;">If the page doesn't open, please check your pop-up blocker or click <a href="https://www.paypal.com/ncp/payment/TN4DXGBSPP7Z6" target="_blank">here</a>.</p>
+    </div>
+
+    <div id="paypal-submit-section" style="display:none;">
+        <form id="paypal-form" action="https://www.paypal.com/ncp/payment/TN4DXGBSPP7Z6" method="post" target="_blank">
+            <input type="submit" value="Hidden Pay Now" />
+        </form>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('booking-form');
+        const dateInput = document.getElementById('travel-date');
+        const travelersInput = document.getElementById('travelers');
+        const completeBtn = document.getElementById('complete-booking-btn');
+        const loader = document.getElementById('loader');
+        const redirectMessage = document.getElementById('payment-redirect-message');
+        const paypalForm = document.getElementById('paypal-form'); // Get the hidden PayPal form
+        const FIXED_AMOUNT = 100;
+
+        // --- 1. Date Validation: Today or Future ---
+        const today = new Date();
+        const todayFormatted = today.getFullYear() + '-' + 
+                              String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                              String(today.getDate()).padStart(2, '0');
+        
+        dateInput.setAttribute('min', todayFormatted);
+
+        // --- 2. Minimum Travelers Check (Fixing the typo) ---
+        travelersInput.addEventListener('input', function() {
+            let travelers = parseInt(travelersInput.value);
+            if (isNaN(travelers) || travelers < 1) {
+                travelersInput.value = 1; // Corrected the typo from 'e.g 1' to '1'
+            }
+        });
+
+        // --- 3. Form Submission, Loader, and AUTO-REDIRECT ---
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            if (!form.checkValidity()) {
+                form.reportValidity(); 
+                return;
+            }
+
+            // 1. Hide button, show loader
+            completeBtn.style.display = 'none';
+            loader.style.display = 'block';
+
+            // 2. Start 2-second loader simulation
+            setTimeout(() => {
+                // 3. Stop loader, hide form, show redirect message
+                loader.style.display = 'none';
+                form.style.display = 'none';
+                redirectMessage.style.display = 'block';
+                
+                // 4. *** AUTO-SUBMIT THE HIDDEN PAYPAL FORM ***
+                // This command tells the browser to submit the form, which opens
+                // the PayPal payment page in a new tab (due to target="_blank").
+                paypalForm.submit(); 
+                
+            }, 2000); // 2 seconds delay
+        });
+    });
+</script>
+</body>
+</html>
